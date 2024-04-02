@@ -15,11 +15,17 @@ param_scheduler = [
         milestones=[6, 9],
         gamma=0.1)
 ]
-
 # optimizer
 optim_wrapper = dict(
     type='OptimWrapper',
-    optimizer=dict(type='Adam', lr=0.001, momentum=0.9, weight_decay=0.0001))
+    optimizer=dict(
+        type='AdamW',
+        lr=0.0001,
+        weight_decay=0.05,
+        eps=1e-8,
+        betas=(0.9, 0.999)))
+
+clip_grad=dict(max_norm=0.01, norm_type=2))
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically
