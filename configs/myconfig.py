@@ -53,8 +53,7 @@ test_dataloader = dict(
 # explicitly over-write all the `num_classes` field from default 80 to 5.
 model = dict(
     roi_head=dict(
-        bbox_head=[
-            dict(
+        bbox_head=dict(
                 type='Shared2FCBBoxHead',
                 # explicitly over-write all the `num_classes` field from default 80 to 5.
                 num_classes=2)))
