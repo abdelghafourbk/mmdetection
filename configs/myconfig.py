@@ -15,7 +15,7 @@ train_dataloader = dict(
         # explicitly add your class names to the field `metainfo`
         metainfo=dict(classes=classes),
         data_root=data_root,
-        ann_file='coco_train',
+        ann_file='coco_train.json',
         data_prefix=dict(img='frames')
         )
     )
@@ -29,7 +29,7 @@ val_dataloader = dict(
         # explicitly add your class names to the field `metainfo`
         metainfo=dict(classes=classes),
         data_root=data_root,
-        ann_file='coco_val',
+        ann_file='coco_val.json',
         data_prefix=dict(img='frames')
         )
     )
