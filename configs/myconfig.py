@@ -24,10 +24,6 @@ train_pipeline = [  # Training data processing pipeline
 train_dataloader = dict(
     batch_size=2,
     num_workers=2,
-    persistent_workers=True,
-    sampler=dict(  # training data sampler
-        type='DefaultSampler',  # DefaultSampler which supports both distributed and non-distributed training. Refer to https://mmengine.readthedocs.io/en/latest/api/generated/mmengine.dataset.DefaultSampler.html#mmengine.dataset.DefaultSampler
-        shuffle=True),  # randomly shuffle the training data in each epoch
     dataset=dict(
         type=dataset_type,
         # explicitly add your class names to the field `metainfo`
