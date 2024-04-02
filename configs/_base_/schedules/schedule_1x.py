@@ -1,5 +1,5 @@
 # training schedule for 1x
-train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=10, val_interval=1)
+train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=12, val_interval=1)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 
@@ -10,17 +10,32 @@ param_scheduler = [
     dict(
         type='MultiStepLR',
         begin=0,
-        end=10,
+        end=12,
         by_epoch=True,
-        milestones=[6, 9],
+        milestones=[8, 11],
         gamma=0.1)
 ]
+
+# optimizer
+optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
+optimizer_config = dict(grad_clip=None)
+# learning policy
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[8, 11])
+runner = dict(type='EpochBasedRunner', max_epochs=12)
+
+lr_config = dict(warmup_iters=1000, step=[8, 11])
+
 # optimizer
 optim_wrapper = dict(
     type='OptimWrapper',
     optimizer=dict(
         type='AdamW',
-        lr=0.0001,
+        lr=0.001,
         weight_decay=0.05,
         eps=1e-8,
         betas=(0.9, 0.999)),
