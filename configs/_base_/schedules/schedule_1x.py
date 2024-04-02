@@ -23,9 +23,8 @@ optim_wrapper = dict(
         lr=0.0001,
         weight_decay=0.05,
         eps=1e-8,
-        betas=(0.9, 0.999)))
-
-clip_grad=dict(max_norm=0.01, norm_type=2))
+        betas=(0.9, 0.999)),
+    clip_grad=dict(max_norm=0.01, norm_type=2))
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically
