@@ -22,7 +22,7 @@ train_pipeline = [  # Training data processing pipeline
 ]
 
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=2,
     num_workers=2,
     persistent_workers=True,
     sampler=dict(  # training data sampler
