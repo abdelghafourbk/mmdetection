@@ -5,7 +5,7 @@ _base_ = './config/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
 # 1. dataset settings
 dataset_type = 'CocoDataset'
 classes = ('__background__', 'meteor')
-data_root='path/to/your/'
+data_root='../kaggle/input/datameteors/meteor'
 
 train_dataloader = dict(
     batch_size=2,
@@ -15,7 +15,7 @@ train_dataloader = dict(
         # explicitly add your class names to the field `metainfo`
         metainfo=dict(classes=classes),
         data_root=data_root,
-        ann_file='train/annotation_data',
+        ann_file='coco_train',
         data_prefix=dict(img='frames')
         )
     )
@@ -29,8 +29,8 @@ val_dataloader = dict(
         # explicitly add your class names to the field `metainfo`
         metainfo=dict(classes=classes),
         data_root=data_root,
-        ann_file='val/annotation_data',
-        data_prefix=dict(img='val/image_data')
+        ann_file='coco_val',
+        data_prefix=dict(img='frames')
         )
     )
 '''
