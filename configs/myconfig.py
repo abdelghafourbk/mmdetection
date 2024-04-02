@@ -17,7 +17,7 @@ train_pipeline = [  # Training data processing pipeline
         poly2mask=False),  # Whether to convert the polygon mask to instance mask, set False for acceleration and to save memory
     dict(
         type='RandomFlip',  # Augmentation pipeline that flips the images and their annotations
-        prob=0.5),  # The probability to flip
+        prob=0.8),  # The probability to flip
     dict(type='PackDetInputs')  # Pipeline that formats the annotation data and decides which keys in the data should be packed into data_samples
 ]
 
