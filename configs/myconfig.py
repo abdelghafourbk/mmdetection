@@ -37,7 +37,7 @@ val_dataloader = dict(
 
 val_evaluator = dict(  # Validation evaluator config
     type='CocoMetric',  # The coco metric used to evaluate AR, AP, and mAP for detection and instance segmentation
-    ann_file=data_root + 'coco_val.json',  # Annotation file path
+    ann_file=data_root + '/coco_val.json',  # Annotation file path
     metric=['bbox'],  # Metrics to be evaluated, `bbox` for detection and `segm` for instance segmentation
     format_only=False,
     backend_args=backend_args)
