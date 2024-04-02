@@ -28,19 +28,6 @@ lr_config = dict(
     step=[8, 11])
 runner = dict(type='EpochBasedRunner', max_epochs=12)
 
-lr_config = dict(warmup_iters=1000, step=[8, 11])
-
-# optimizer
-optim_wrapper = dict(
-    type='OptimWrapper',
-    optimizer=dict(
-        type='AdamW',
-        lr=0.001,
-        weight_decay=0.05,
-        eps=1e-8,
-        betas=(0.9, 0.999)),
-    clip_grad=dict(max_norm=0.01, norm_type=2))
-
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically
 #       or not by default.
