@@ -81,19 +81,47 @@ model = dict(
 max_epochs = 12
 train_cfg = dict(max_epochs=max_epochs)
 
+from mmcv.runner.hooks.lr_updater import ReduceLROnPlateauHook
+
 # learning rate
 param_scheduler = [
     dict(
         type='LinearLR', start_factor=0.001, by_epoch=False, begin=0,
         end=1000),
-    dict(
-        type='MultiStepLR',
-        begin=0,
-        end=max_epochs,
-        by_epoch=True,
-        milestones=[8, 11],
-        gamma=0.1)
+    # dict(
+    #     type='MultiStepLR',
+    #     begin=0,
+    #     end=max_epochs,
+    #     by_epoch=True,
+    #     milestones=[8, 11],
+    #     gamma=0.1)
 ]
+
+# Add ReduceLROnPlateauHook to your training workflow
+lr_config = dict(
+    policy='step',  # Policy for adjusting learning rate. Options: 'step', 'linear', 'exp', 'cosine', 'poly'
+    warmup='linear',  # Policy for warmup. Options: 'linear', 'constant'
+    warmup_iters=500,  # Number of iterations for warmup
+    warmup_ratio=0.001,  # Ratio of starting learning rate used in warmup
+    step=[8, 11],  # List of epochs to adjust learning rate
+    gamma=0.1,  # Factor by which to reduce the learning rate
+    by_epoch=True  # Whether to update learning rate by epoch or by iteration
+)
+# Add ReduceLROnPlateauHook to the training pipeline
+hooks = [
+    dict(type='CheckpointHook', interval=1),
+    dict(type='IterTimerHook'),
+    dict(type='LrUpdaterHook'),
+    dict(type='EvalHook', interval=1),
+    dict(type='TextLoggerHook'),
+    # Add ReduceLROnPlateauHook
+    dict(
+        type='ReduceLROnPlateauHook',
+        by_epoch=True,
+        **lr_config
+    )
+]
+
 
 # optimizer
 optim_wrapper = dict(
