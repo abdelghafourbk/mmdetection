@@ -75,8 +75,7 @@ model = dict(
         bbox_head=dict(
                 type='Shared2FCBBoxHead',
                 # explicitly over-write all the `num_classes` field from default 80 to 5.
-                num_classes=2,
-                dropout=0.1)))
+                num_classes=2)))
 
 max_epochs = 12
 train_cfg = dict(max_epochs=max_epochs)
