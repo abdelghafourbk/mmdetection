@@ -9,6 +9,7 @@ model = dict(
     backbone=dict(
         _delete_=True,
         type='SwinTransformer',
+        dropout=0.1,
         embed_dims=96,
         depths=[2, 2, 6, 2],
         num_heads=[3, 6, 12, 24],
